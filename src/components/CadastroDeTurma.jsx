@@ -163,6 +163,7 @@ const CadastroDeTurma = ({ onNavigateHome }) => {
                   </div>
                   <div className="action-buttons">
                     <button className="btn-edit" title="Editar" onClick={() => handleEdit(t)}>✏️</button>
+                    <button className="btn-delete" title="Excluir" onClick={() => handleDelete(i)}>🗑️</button>
                   </div>
                 </li>
               ))}

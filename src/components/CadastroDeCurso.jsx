@@ -137,58 +137,39 @@ const CadastroDeCurso = ({ onNavigateHome }) => {
         </div>
 
         {/* List Section */}
-<div className="list-section">
-  <h3 className="list-title">Cursos Cadastrados</h3>
+        <div className="list-section">
+          <h3 className="list-title">Cursos Cadastrados</h3>
 
-  {/* Campo de filtro */}
-  <div className="filter-section">
-    <input
-      type="text"
-      placeholder="Filtrar por nome do curso..."
-      className="form-input"
-      data-testid="cadastro-de-curso"
-      value={filtro}
-      onChange={(e) => setFiltro(e.target.value)}
-    />
-  </div>
+          {/* Campo de filtro */}
+          <div className="filter-section">
+            <input
+              type="text"
+              placeholder="Filtrar por nome do curso..."
+              className="form-input"
+              data-testid="cadastro-de-curso"
+              value={filtro}
+              onChange={(e) => setFiltro(e.target.value)}
+            />
+          </div>
 
-  <ul className="ucs-list">
-    {cursos
-      .filter((curso) =>
-        curso.nomecurso.toLowerCase().includes(filtro.toLowerCase())
-      )
-      .map((curso) => (
-        <li key={curso.idcurso} className="ucs-item">
-          <div className="ucs-info">
-            <div className="ucs-name">{curso.nomecurso}</div>
-            <div className="ucs-details">
-              {curso.cargahoraria ? (
-                <>Carga horária: {curso.cargahoraria} horas</>
-              ) : (
-                <>Sem carga horária definida</>
-              )}
-            </div>
-          </div>
-          <div className="action-buttons">
-            <button
-              className="btn-edit"
-              title="Editar"
-              onClick={() => handleEdit(curso)}
-            >
-              ✏️
-            </button>
-            <button
-              className="btn-delete"
-              title="Excluir"
-              onClick={() => handleDelete(curso)}
-            >
-              🗑️
-            </button>
-          </div>
-        </li>
-      ))}
-  </ul>
-</div>
+          <ul className="ucs-list">
+            {cursos
+              .filter((i) => (filtro ? (i.nomecurso || '').toLowerCase().includes(filtro.toLowerCase()) : true))
+              .map((curso) => (
+                <li key={curso.idcurso} className="ucs-item">
+                  <div className="ucs-info">
+                    <div className="ucs-name">{i.curso || '—'}</div>
+                    <div className="ucs-details">
+                    </div>
+                  </div>
+                  <div className="action-buttons">
+                    <button className="btn-edit" title="Editar" onClick={() => handleEdit(i)}>✏️</button>
+                    <button className="btn-delete" title="Excluir" onClick={() => handleDelete(i)}>🗑️</button>
+                  </div>
+                </li>
+              ))}
+          </ul>
+        </div>
 
       </div>
 
